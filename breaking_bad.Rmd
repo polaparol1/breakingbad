@@ -2,19 +2,27 @@
 title: "Breaking Bad"
 author: "Pola Parol"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  html_document:
+    theme: cerulean
+    toc: true
+    toc_float: true
 ---
+<style>
+body {
+text-align: justify}
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Breaking Bad
+## Introduction
 
 it is an American crime drama television series created and produced by *Vince Gilligan* for AMC. Set and filmed in Albuquerque, New Mexico, the series follows *Walter White* (Bryan Cranston), an underpaid, dispirited high-school chemistry teacher struggling with a recent diagnosis of stage-three lung cancer. White turns to a life of crime and partners with a former student, *Jesse Pinkman* (Aaron Paul), to produce and distribute methamphetamine to secure his family's financial future before he dies, while navigating the dangers of the criminal underworld. Breaking Bad premiered on AMC on January 20, 2008, and concluded on September 29, 2013, after five seasons consisting of 62 episodes.
 
 
-![Opis obrazu](/Users/polaparol/Documents/bb_logo.png)
+![Breaking Bad Logo](/Users/polaparol/Documents/bb_logo.png)
 
 ```{r}
 library(readxl)
@@ -24,7 +32,12 @@ summary(data)
 max(data$Avg_views)
 str(data)
 ```
-As we know, Breaking Bad is one of the most popular series, which is available on Netflix. However, it was also broadcasted on TV. Season-to-season viewing data is available. season 5 was divided into two parts, for analysis purposes it was divided into seasons 5 and 6. . Average growth rate over the seasons was on average equal to 13%.  It was mainly due to the big increase between two last parts of the last season (by 5.2064 milions). 
+## Data Analysis
+
+### Series View on TV
+
+As we know, Breaking Bad is one of the most popular series, which is available on Netflix. However, it was also broadcasted on TV. Season-to-season viewing data is available. season 5 was divided into two parts, for analysis purposes it was divided into seasons 5 and 6. . Average growth rate over the seasons was on average equal to 1.13 milions.  It was mainly due to the big increase between two last parts of the last season (by 5.2064 milions). 
+
 
 ```{r}
 library(ggplot2)
@@ -33,6 +46,7 @@ ggplot(data, aes(x = Season, y = Avg_views)) +
   geom_line(color = "blue") +
   labs(x = "Season", y = "Average Views [in milions]", title = "Average Views per Season")
 ```
+
 
 ```{r}
 growth <- data$Avg_views[6] - data$Avg_views[1] 
@@ -43,7 +57,24 @@ growth_5_6 <- data$Avg_views[6] - data$Avg_views[5]
 growth_5_6
 ```
 
+### Filmweb Rating
+
+Based on the chart below, we can see that the ranking on the filmweb platform increased with each subsequent season. Rating acheived in the last season is one of the highest among all series. The average rating increase was approximately 0.13
+
+```{r}
+change <- data$Ranking[6] - data$Ranking[1]
+change_rate <- change/5
+change_rate
+```
 
 
+```{r}
+plot(data$Season, data$Ranking, type = "b", pch = 19, 
+     col = "red", xlab = "Season", ylab = "Ranking", main = "Rating by Season")
+```
+
+## Conclusions
+
+Based on this basic analysis we can conclude that Breaking Bad is a popular series with a high rating.
 
 
