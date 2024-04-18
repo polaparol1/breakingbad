@@ -17,11 +17,27 @@ it is an American crime drama television series created and produced by *Vince G
 ![Opis obrazu](/Users/polaparol/Documents/bb_logo.png)
 
 ```{r}
-data <- read.csv('/Users/polaparol/Documents/DS-sem4/rresearch/dataset_bb.csv')
+library(readxl)
+data <- read_excel('/Users/polaparol/Documents/DS-sem4/rresearch/dane_bb.xlsx')
 
 summary(data)
 max(data$Avg_views)
-
-
+str(data)
 ```
+
+```{r}
+library(ggplot2)
+ggplot(data, aes(x = Season, y = Avg_views)) +
+  geom_point(size = 3, color = "blue") +
+  geom_line(color = "blue") +
+  labs(x = "Season", y = "Average Views [in milions]", title = "Average Views per Season")
+```
+
+
+
+
+
+
+
+
 
