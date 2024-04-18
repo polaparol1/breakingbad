@@ -24,6 +24,7 @@ summary(data)
 max(data$Avg_views)
 str(data)
 ```
+As we know, Breaking Bad is one of the most popular series, which is available on Netflix. However, it was also broadcasted on TV. Season-to-season viewing data is available. season 5 was divided into two parts, for analysis purposes it was divided into seasons 5 and 6. . Average growth rate over the seasons was on average equal to 13%.  It was mainly due to the big increase between two last parts of the last season (by 5.2064 milions). 
 
 ```{r}
 library(ggplot2)
@@ -33,9 +34,14 @@ ggplot(data, aes(x = Season, y = Avg_views)) +
   labs(x = "Season", y = "Average Views [in milions]", title = "Average Views per Season")
 ```
 
+```{r}
+growth <- data$Avg_views[6] - data$Avg_views[1] 
+growth_rate <- growth/6
+growth_rate
 
-
-
+growth_5_6 <- data$Avg_views[6] - data$Avg_views[5]
+growth_5_6
+```
 
 
 
